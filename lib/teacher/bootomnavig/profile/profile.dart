@@ -21,7 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           Stack(
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 radius: 100,
                 backgroundImage: NetworkImage(
                     'https://bestprofilepictures.com/wp-content/uploads/2020/07/Cool-Profile-Picture-For-Instagram.jpg'),
@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Positioned(
                   child: IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.add_a_photo),
+                icon: const Icon(Icons.add_a_photo),
               ))
             ],
           )

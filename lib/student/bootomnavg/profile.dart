@@ -15,7 +15,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         body: SafeArea(
       child: Center(
           child: Column(
-            
         children: [
           SizedBox(height: 10),
           Text("Profile ",
@@ -29,7 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     )
                   : CircleAvatar(
                       radius: 70,
-         ))
+                    ))
         ],
       )),
     ));

@@ -1,4 +1,5 @@
-// ignore_for_file: use_full_hex_values_for_flutter_colors, use_build_context_synchronously
+
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,69 +13,7 @@ class TeacherHomeScreen extends StatefulWidget {
 }
 
 class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
-  List catName = [
-    "Math",
-    "BIO",
-    "Chemistry",
-    "Physics",
-    "English",
-    "Sindhi",
-    "Urdu",
-    "IT",
-  ];
-  List<Color> catColor = [
-    const Color(0xfffffcf2f),
-    const Color(0xFF6FE08D),
-    const Color(0xFF61BDFD),
-    const Color(0xFFFC7F7F),
-    const Color(0xFFCBB4CB),
-    const Color(0xFFFC7F7F),
-    const Color(0xFFCCC4BB),
-    const Color(0xfff78e667),
-  ];
-  List<Icon> catIcon = [
-    const Icon(
-      Icons.home,
-      color: Colors.white,
-      size: 30,
-    ),
-    const Icon(
-      Icons.home,
-      color: Colors.white,
-      size: 30,
-    ),
-    const Icon(
-      Icons.home,
-      color: Colors.white,
-      size: 30,
-    ),
-    const Icon(
-      Icons.home,
-      color: Colors.white,
-      size: 30,
-    ),
-    const Icon(
-      Icons.home,
-      color: Colors.white,
-      size: 30,
-    ),
-    const Icon(
-      Icons.home,
-      color: Colors.white,
-      size: 30,
-    ),
-    const Icon(
-      Icons.home,
-      color: Colors.white,
-      size: 30,
-    ),
-    const Icon(
-      Icons.home,
-      color: Colors.white,
-      size: 30,
-    ),
-  ];
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,56 +65,7 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
               ],
             )),
       ),
-      body: ListView(
-        children: [
-          const SizedBox(height: 10),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: const Text(
-              "Categories",
-              style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 15,
-            ),
-            child: Column(children: [
-              GridView.builder(
-                itemCount: catName.length,
-                shrinkWrap: true,
-                physics: const AlwaysScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  childAspectRatio: 1.01,
-                ),
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          color: catColor[index],
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(child: catIcon[index]),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(catName[index]),
-                    ],
-                  );
-                },
-              )
-            ]),
-          ),
-        ],
-      ),
-    );
+  );
   }
 
   Future<void> logout(BuildContext context) async {

@@ -40,6 +40,7 @@ dependencies:
   cloud_firestore: ^4.9.1
   fluttertoast: ^8.2.2
   image_picker: ^1.0.4
+  chips_choice: ^3.0.1
 
 
 

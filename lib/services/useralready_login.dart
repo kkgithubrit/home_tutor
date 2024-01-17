@@ -6,27 +6,26 @@ import 'package:home_tutor/firebaseAuth/Login.dart';
 import 'package:home_tutor/firebaseAuth/student.dart';
 import 'package:home_tutor/firebaseAuth/teacher.dart';
 
-class SplashServices {
-  void signIn(BuildContext context) {
-    final auth = FirebaseAuth.instance;
-    final User =auth.currentUser;
+import '../utils.dart';
 
-    if (User != null) {
-      Timer(
-          const Duration(seconds: 3),
-          () => Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const Teacher())));
+class SplashServices {
+  void signIn(BuildContext context) async {
+    final auth = FirebaseAuth.instance;
+    final user = auth.currentUser;
+
+    if (user != null) {
+      bool isUserAStudent = await isStudent(user.uid);
+
+      if (isUserAStudent) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const Student()));
+      } else {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const Teacher()));
+      }
     } else {
-      Timer(
-          const Duration(seconds: 3),
-          () => Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const Student())));
-    }
-    if (User != null) {
-      Timer(
-          const Duration(seconds: 3),
-          () => Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const LoginPage())));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const LoginPage()));
     }
   }
 }
