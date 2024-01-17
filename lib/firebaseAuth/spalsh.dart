@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, annotate_overrides
 
 import 'package:flutter/material.dart';
 import 'package:home_tutor/services/useralready_login.dart';

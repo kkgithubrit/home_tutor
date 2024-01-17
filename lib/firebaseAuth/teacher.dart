@@ -2,12 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:home_tutor/student/bootomnavg/chat.dart';
-import 'package:home_tutor/student/bootomnavg/profile.dart';
 import 'package:home_tutor/teacher/bootomnavig/home.dart';
 import 'package:home_tutor/teacher/bootomnavig/student.dart';
 
 import '../student/bootomnavg/fav.dart';
-
+import '../teacher/bootomnavig/profile/teacher_profile.dart';
 
 class Teacher extends StatefulWidget {
   const Teacher({super.key});
@@ -21,7 +20,7 @@ class _TeacherState extends State<Teacher> {
     const TeacherHomeScreen(),
     const StudentScreen(),
     const FavoriteScreen(),
-    const ProfileScreen(),
+    const TeacherProfileScreen(),
     const ChatCScreen(),
   ];
   int _currentIndex = 0;
@@ -69,7 +68,5 @@ class _TeacherState extends State<Teacher> {
       ),
       body: Screen[_currentIndex],
     );
-
-    
   }
 }

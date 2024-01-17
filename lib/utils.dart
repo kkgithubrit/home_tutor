@@ -1,4 +1,6 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:image_picker/image_picker.dart';
 
 Future<bool> isStudent(String uid) async {
   bool existsAsStudent = false;
@@ -23,3 +25,13 @@ Future<bool> isStudent(String uid) async {
 
   return existsAsStudent || existsAsTeacher;
 }
+
+// Image Picker
+// picImage(ImageSource source) async {
+//   final ImagePicker _imagePicker = ImagePicker();
+//   XFile? _file = await _imagePicker.pickImage(source: source);
+//   if (_file != null) {
+//     return await _file.readAsBytes();
+//   }
+//   print("no Image Select");
+// }

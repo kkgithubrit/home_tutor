@@ -380,8 +380,9 @@ class _RegisterState extends State<Register> {
     var user = _auth.currentUser;
     if (role == 'Student') {
       Map<String, dynamic> data = {
-        'name': 'NAME', //TODO: Add name textfield value
+        'name': 'uid ', //TODO: Add name textfield value
         'email': emailController.text,
+        'password': passwordController.text,
         'role': role,
       };
 
@@ -390,8 +391,9 @@ class _RegisterState extends State<Register> {
       ref.doc(user!.uid).set(data);
     } else {
       Map<String, dynamic> data = {
-        'name': 'NAME', //TODO: Add name textfield value
+        'name': 'uid', //TODO: Add name textfield value
         'email': emailController.text,
+        'password': passwordController.text,
         'role': role,
       };
       CollectionReference ref =

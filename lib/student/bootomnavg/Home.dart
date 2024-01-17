@@ -1,12 +1,15 @@
-// ignore_for_file: use_full_hex_values_for_flutter_colors, use_build_context_synchronously, unused_import
+import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:home_tutor/firebaseAuth/Login.dart';
+import 'package:home_tutor/models/teacher_model.dart';
 import 'package:home_tutor/student/bootomnavg/tutor.dart';
-import 'package:home_tutor/widget/popular_tutor.dart';
+import 'package:home_tutor/widget/studentwidget/city_wise_tutor.dart';
 
-//import '../firebaseAuth/Login.dart';
+import '../../services/firebase_service.dart';
+import '../../widget/studentwidget/deatil_tutor.dart';
 
 class StudentHomeScreen extends StatefulWidget {
   const StudentHomeScreen({super.key});
@@ -82,141 +85,237 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
               )),
         ),
         body: SingleChildScrollView(
-          child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10, right: 5),
-              child: Wrap(
-                spacing: 15.0,
-                runSpacing: 10.0,
-                children: subject.map((String chipLabel) {
-                  return GestureDetector(
-                    onTap: () {
-                      // Handle chip tap
-                      selectChip(chipLabel);
-                      setState(() {});
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        color: selectedChip == chipLabel
-                            ? Colors.blue // Active color for selected chip
-                            : Colors.grey[
-                                300], // Inactive color for unselected chips
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
-                      child: Text(
-                        chipLabel,
-                        style: TextStyle(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 10, right: 5),
+                child: Wrap(
+                  spacing: 15.0,
+                  runSpacing: 10.0,
+                  children: subject.map((String chipLabel) {
+                    return GestureDetector(
+                      onTap: () {
+                        // Handle chip tap
+                        selectChip(chipLabel);
+                        setState(() {});
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
                           color: selectedChip == chipLabel
-                              ? Colors.white // Text color for selected chip
-                              : Colors.black, // Text color for unselected chips
+                              ? Colors.blue // Active color for selected chip
+                              : Colors.grey[
+                                  300], // Inactive color for unselected chips
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        child: Text(
+                          chipLabel,
+                          style: TextStyle(
+                            color: selectedChip == chipLabel
+                                ? Colors.white // Text color for selected chip
+                                : Colors
+                                    .black, // Text color for unselected chips
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }).toList(),
+                    );
+                  }).toList(),
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            // Padding(padding: EdgeInsets.only(top: 10),
-            // child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            //   const Padding(
-            //       padding: EdgeInsets.only(
-            //     top: 6,
-            //   )),
-            //   const Text(
-            //     "Popular Tutor",
-            //     style: TextStyle(
-            //       fontSize: 18,
-            //       fontWeight: FontWeight.bold,
-            //     ),
-            //   ),
-            //   const SizedBox(
-            //     width: 150,
-            //   ),
-            //   TextButton(
-            //     onPressed: () {
-            //       Navigator.push(
-            //           context,
-            //           MaterialPageRoute(
-            //               builder: (context) => const TutorScreen()));
-            //     },
-            //     child: const Text("See All"),
-            //   ),
-            // ]),
-            // ),
-            // Tutor(),
-
-           
-          //  Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          //     const Padding(
-          //         padding: EdgeInsets.only(
-          //       top: 6,
-          //     )),
-          //     const Text(
-          //       "Popular Tutor",
-          //       style: TextStyle(
-          //         fontSize: 18,
-          //         fontWeight: FontWeight.bold,
-          //       ),
-          //     ),
-          //     const SizedBox(
-          //       width: 150,
-          //     ),
-          //     TextButton(
-          //       onPressed: () {
-          //         Navigator.push(
-          //             context,
-          //             MaterialPageRoute(
-          //                 builder: (context) => const TutorScreen()));
-          //       },
-          //       child: const Text("See All"),
-          //     ),
-          //   ]),
-            
-            // ignore: prefer_const_constructors
-            // Column(
-            //   children: [
-            //     Container(
-            //       height: 300,
-            //       width: 200,
-            //       margin: EdgeInsets.symmetric(
-            //         horizontal: 15,
-            //         vertical: 20,
-            //       ),
-            //       decoration: BoxDecoration(
-            //         color: Color(0xFFF2F8FF),
-            //         borderRadius: BorderRadius.circular(15),
-            //         boxShadow: [
-            //           (BoxShadow(
-            //               color: Color.fromARGB(255, 255, 255, 255),
-            //               spreadRadius: 2,
-            //               blurRadius: 4)),
-            //         ],
-            //       ),
-            //       child: Column(
-            //           crossAxisAlignment: CrossAxisAlignment.start,
-            //           children: [
-            //             Stack(
-            //               children: [
-            //                 InkWell(
-            //                   onTap: () {
-            //                     setState(() {});
-            //                   },
-            //                   child: ClipRRect(
-            //                       borderRadius: BorderRadius.only(
-            //                           topLeft: Radius.circular(15),
-            //                           topRight: Radius.circular(15))),
-            //                 )
-            //               ],
-            //             )
-            //           ]),
-            //     )
-            //   ],
-            // )
-          ]),
+              // const SizedBox(
+              //   height: 20,
+              // ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const Padding(
+                          padding: EdgeInsets.only(
+                        top: 6,
+                      )),
+                      const Text(
+                        "Popular Tutor",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 150,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const TutorScreen()));
+                        },
+                        child: const Text(
+                          "See All",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ]),
+              ),
+              FutureBuilder(
+                future: MyFirebaseService().getProfilesFromFirebase(),
+                builder: (context, snapshot) {
+                  List<TeacherModel> teachers = snapshot.data ?? [];
+                  if (snapshot.hasError) {
+                    return Container();
+                  }
+                  if (snapshot.hasData && snapshot.data != null) {
+                    return SizedBox(
+                      height: 300,
+                      child: ListView.builder(
+                          padding: EdgeInsets.only(left: 12),
+                          itemCount: teachers.length,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (
+                            context,
+                            index,
+                          ) {
+                            return InkWell(
+                              onTap: () {
+                                // Navigator.pushReplacement(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) => const TutorHire(),
+                                //   ),
+                                // );
+                                log("${teachers.lastWhere((element) => element.profile.isNotEmpty)}");
+                              },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.68,
+                                margin: const EdgeInsets.only(
+                                  right: 16,
+                                  top: 8,
+                                  bottom: 8,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.grey.shade100,
+                                        spreadRadius: 2,
+                                        blurRadius: 1,
+                                        offset: const Offset(0, 2)),
+                                  ],
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: ClipRRect(
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(15),
+                                          topRight: Radius.circular(15),
+                                        ),
+                                        child: Image.network(
+                                          teachers[index].profile,
+                                          fit: BoxFit.fitWidth,
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Container(),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 12, vertical: 8),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                teachers[index].name,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              const Text(
+                                                "  \$ Per Hour  ",
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  backgroundColor: Colors.amber,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 8,
+                                          ),
+                                          Text(
+                                            "${teachers[index].subjects.join(',')}${teachers[index].subjects.join(',')}",
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  minimumSize: Size.square(40),
+                                                ),
+                                                onPressed: () {},
+                                                child: Icon(Icons.call),
+                                              ),
+                                              const SizedBox(
+                                                width: 20,
+                                              ),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  minimumSize: Size.square(40),
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    const Icon(Icons.message),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          }),
+                    );
+                  }
+                  return Container();
+                },
+              ),
+              const SizedBox(height: 10),
+              const Padding(
+                padding: EdgeInsets.only(left: 15),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "City Tutor",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 19,
+                    ),
+                  ),
+                ),
+              ),
+              const CityWiseTutor(),
+            ],
+          ),
         ));
   }
 

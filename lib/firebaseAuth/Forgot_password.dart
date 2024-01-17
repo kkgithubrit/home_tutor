@@ -23,6 +23,13 @@ class _ForgotpassState extends State<Forgotpass> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+         leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => LoginPage()));
+            },
+          ),
         elevation: 0,
       ),
       body: SingleChildScrollView(

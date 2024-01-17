@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, prefer_is_empty, avoid_print, unused_local_variable
+// ignore_for_file: unused_local_variable
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -138,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                               return "Password cannot be empty";
                             }
                             if (!regex.hasMatch(value)) {
-                              return ("please enter valid password min. 8 character");
+                              return ("please enter valid password min.8 character");
                             } else {
                               return null;
                             }
@@ -155,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                             alignment: Alignment.bottomRight,
                             child: GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
+                                  Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>

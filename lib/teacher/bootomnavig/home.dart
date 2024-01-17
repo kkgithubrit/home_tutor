@@ -1,9 +1,9 @@
-
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:home_tutor/firebaseAuth/Login.dart';
+import 'package:home_tutor/widget/teacherwidget/Request_student.dart';
 
 class TeacherHomeScreen extends StatefulWidget {
   const TeacherHomeScreen({super.key});
@@ -13,7 +13,6 @@ class TeacherHomeScreen extends StatefulWidget {
 }
 
 class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +64,30 @@ class _TeacherHomeScreenState extends State<TeacherHomeScreen> {
               ],
             )),
       ),
-  );
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Request Student",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            RequestStudent(),
+            Text(
+              "Enroll Student",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Future<void> logout(BuildContext context) async {

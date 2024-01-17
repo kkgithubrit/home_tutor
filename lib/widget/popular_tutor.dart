@@ -1,10 +1,16 @@
-// // ignore_for_file: unused_import
+// // ignore_for_file: non_constant_identifier_names
 
-// import 'package:cloud_firestore/cloud_firestore.dart';
+// //import 'package:cloud_firestore/cloud_firestore.dart';
+// //import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:flutter/material.dart';
+// import 'package:home_tutor/widget/tutor_hire.dart';
+// import 'package:home_tutor/models/teacher_model.dart';
+
+// // import 'tutor_hire.dart';
 
 // class Tutor extends StatefulWidget {
-//   const Tutor({super.key});
+//   List<TeacherModel> teachers;
+//   Tutor({super.key, required this.teachers});
 
 //   @override
 //   State<Tutor> createState() => _TutorState();
@@ -14,26 +20,33 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     return Container(
-//       height: 340,
-//       child: ListView.builder(
-//           itemCount: 2,
-//           shrinkWrap: true,
-//           scrollDirection: Axis.horizontal,
-//           itemBuilder: (context, Index) {
-//             return Column(
-//               children: <Widget>[
-//                 Container(
+//         height: 340,
+//         child: FutureBuilder(
+//           future: , builder: builder)
+//          ListView.builder(
+//             itemCount: 10,
+//             shrinkWrap: true,
+//             scrollDirection: Axis.horizontal,
+//             itemBuilder: (
+//               Context,
+//               index,
+//             ) {
+//               return Column(
+//                 children: <Widget>[
+//                   Container(
 //                     height: 300,
 //                     width: 200,
-//                     margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+//                     margin:
+//                         const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
 //                     decoration: BoxDecoration(
-//                       color: Color(0xFFF2F8FF),
+//                       color: const Color(0xFFF2F8FF),
 //                       borderRadius: BorderRadius.circular(15),
-//                       boxShadow: [
+//                       boxShadow: const [
 //                         (BoxShadow(
-//                             color: Color.fromARGB(255, 255, 255, 255),
-//                             spreadRadius: 2,
-//                             blurRadius: 4)),
+//                           color: Color.fromARGB(255, 255, 255, 255),
+//                           spreadRadius: 4,
+//                           blurRadius: 4,
+//                         )),
 //                       ],
 //                     ),
 //                     child: Column(
@@ -42,58 +55,81 @@
 //                         Stack(
 //                           children: [
 //                             InkWell(
-//                               onTap: () {},
-//                               child: ClipRRect(
-//                                   borderRadius: BorderRadius.only(
-//                                       topLeft: Radius.circular(15),
-//                                       topRight: Radius.circular(15)),
-//                                       child: Image.asset("assets/images${Index+1}",
-//                                       height: 200,
-//                                       width: 200,
-//                                       fit: BoxFit.cover,
-//                                  ),
-//                                ),   
-//                             ),
-//                             Align(
-//                               alignment: Alignment.topRight,
-//                               child: Container(
-//                                 margin: EdgeInsets.all(7),
-//                                 height: 45,
-//                                 width: 45,
-//                                 decoration: BoxDecoration(
-//                                   color: Color(0xFFF2F8FF),
-//                                   shape: BoxShape.circle,
-//                                   boxShadow: [
-//                                     BoxShadow(
-//                                       blurRadius: 4,
-//                                       spreadRadius: 2,
-//                                     ),
-//                                   ]
-//                                 ),
-//                                 child:Center(
-//                                   child: Icon(
-//                                     Icons.favorite_outline,
-//                                     size: 28,
+//                               onTap: () {
+//                                 Navigator.pushReplacement(
+//                                   context,
+//                                   MaterialPageRoute(
+//                                     builder: (context) => const TutorHire(),
 //                                   ),
-//                                 ) ,
+//                                 );
+//                               },
+//                               child: ClipRRect(
+//                                 borderRadius: const BorderRadius.only(
+//                                     topLeft: Radius.circular(15),
+//                                     topRight: Radius.circular(15)),
+//                                 child: Image.asset(
+//                                   "assets/images/Online.jpg",
+//                                   height: 200,
+//                                   width: 200,
+//                                   fit: BoxFit.cover,
+//                                 ),
 //                               ),
 //                             ),
-//                             Align(
-//                               alignment: Alignment.topLeft,
-//                               child: Text( 
-//                                 "Tutors",
-//                                 style:TextStyle(backgroundColor: Colors.blue)
+//                           ],
+//                         ),
+//                         const SizedBox(height: 8),
+//                         const Padding(
+//                           padding: EdgeInsets.symmetric(horizontal: 5),
+//                           child: Row(
+//                             crossAxisAlignment: CrossAxisAlignment.start,
+//                             children: [
+//                               Text(
+//                                 "Karan",
+//                                 style: TextStyle(fontWeight: FontWeight.bold),
+//                               ),
+//                               SizedBox(
+//                                 width: 110,
+//                               ),
+//                               Text(
+//                                 "  5 Hr  ",
+//                                 style: TextStyle(
+//                                   fontWeight: FontWeight.bold,
+//                                   backgroundColor: Colors.amber,
 //                                 ),
-                                
-
+//                               ),
+//                             ],
+//                           ),
+//                         ),
+//                         const SizedBox(
+//                           height: 20,
+//                         ),
+//                         Row(
+//                           children: [
+//                             const Align(
+//                               alignment: Alignment.bottomLeft,
+//                               child: Text("Eng + Math"),
+//                             ),
+//                             const SizedBox(
+//                               width: 20,
+//                             ),
+//                             Align(
+//                               alignment: Alignment.bottomRight,
+//                               child: ElevatedButton(
+//                                 onPressed: () {},
+//                                 child: const Text(
+//                                   "Request",
+//                                   style: TextStyle(fontWeight: FontWeight.bold),
+//                                 ),
+//                               ),
 //                             )
 //                           ],
 //                         )
 //                       ],
-//                     )),
-//               ],
+//                     ),
+//                   ),
+//                 ],
+//               );
+//             })
 //             );
-//           }),
-//     );
 //   }
 // }

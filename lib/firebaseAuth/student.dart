@@ -1,12 +1,12 @@
-// ignore_for_file: use_build_context_synchronously, use_full_hex_values_for_flutter_colors, non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 
 import 'package:home_tutor/student/bootomnavg/Home.dart';
 import 'package:home_tutor/student/bootomnavg/chat.dart';
 import 'package:home_tutor/student/bootomnavg/fav.dart';
-import 'package:home_tutor/student/bootomnavg/profile.dart';
 import 'package:home_tutor/student/bootomnavg/tutor.dart';
+import 'package:home_tutor/student/profile_edit/profile.dart';
 
 class Student extends StatefulWidget {
   const Student({super.key});
@@ -20,7 +20,7 @@ class _StudentState extends State<Student> {
     const StudentHomeScreen(),
     const TutorScreen(),
     const FavoriteScreen(),
-    const ProfileScreen(),
+     ProfileScreen(),
     const ChatCScreen(),
   ];
   int _currentIndex = 0;
@@ -30,7 +30,7 @@ class _StudentState extends State<Student> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
-        unselectedItemColor: Colors.white,
+        unselectedItemColor: const Color.fromRGBO(255, 255, 255, 1),
         unselectedLabelStyle: const TextStyle(color: Colors.grey),
         selectedItemColor: Colors.blue,
         selectedLabelStyle: const TextStyle(color: Colors.purple),
@@ -68,6 +68,5 @@ class _StudentState extends State<Student> {
       ),
       body: Screen[_currentIndex],
     );
-    
   }
-} 
+}
